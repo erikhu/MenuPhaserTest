@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.11.2.min.js" > </script>
+		<script type="text/javascript" src="phaser.min.js" > </script>
+		<script type="text/javascript">
+	
+			$("document").ready(iniciar);		
+		
+			function iniciar(){
+				
+				var game = new Phaser.Game(800,600,Phaser.AUTO, "vistaJuego");	
+				var menu = Menu(game);
+				game.state.add("menu", menu,true);		
+			}
+
+			function Menu(game){
+				var fondo ;
+				var boton ;	
+				estado = {
+					preload: function(){
+						game.load.image('fondo', 'img/fondo.png');	
+						game.load.spritesheet("boton", "img/button_texture_atlas.png",193, 71);				
+					},
+					create: function(){
+						fondo = game.add.tileSprite(0,0,800,600,"fondo");	
+						
+						boton = game.add.button(game.world.centerX -75 , game.world.centerY+71 , "boton" ,presiona,game,0,1,2 );
+					},
+					update: function(){},
+					render: function(){}
+				}
+				function presiona(){
+						alert("presiona");
+				}
+				return estado;
+
+			}
+		 </script>
+	</head>
+	<body>
+		<div id="vistaJuego"></div>		
+		<div id="debug"></div>
+	</body>
+</html>
